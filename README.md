@@ -19,7 +19,7 @@ $ npm run dev
 ✔ Would you like to use App Router? (recommended) … No
 ✔ Would you like to customize the default import alias (@/*)? … No
 
-参考：[create-next-appで訊かれていること](https://zenn.dev/ikkik/articles/51d97ff70bd0da)
+参考：https://zenn.dev/ikkik/articles/51d97ff70bd0da
 ```
 
 ### その他の起動方法
