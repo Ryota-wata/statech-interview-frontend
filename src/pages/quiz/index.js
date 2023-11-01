@@ -6,7 +6,7 @@ import { Card, CardContent, Typography, Container } from '@mui/material';
 
 // 質問、回答、正誤を定義
 const questions = [
-  { question: '初めまして。本日の面接を担当させて頂きます、株式会社スタートアップテクノロジー代表のひさじゅです。よろしくお願いいたします。それでは早速ですが自己紹介をお願いします。', 
+  { question: '初めまして。本日の面接を担当させて頂きます、株式会社RUNTEQ代表のひさじゅです。よろしくお願いいたします。それでは早速ですが自己紹介をお願いします。', 
     answers: [
       { text: '次へ', nextQuestionNum: 1, isCorrect: true },
     ] 
@@ -61,7 +61,7 @@ const Index = () => {
   useEffect(() => {
     if (currentQuestionNum < questions.length) {
         const questionText = questions[currentQuestionNum].question;
-        // 質問文の文字数分を0.1秒ごとに一文字表示
+      // 質問文の文字数分を0.1秒ごとに一文字表示
       if (QuestionIndex < questionText.length) {
         const timer = setInterval(() => {
           setDisplayedQuestion(questionText.slice(0, QuestionIndex + 1));
