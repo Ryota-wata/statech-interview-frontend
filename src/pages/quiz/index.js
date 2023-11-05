@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import InterviewerImageHappy from '../../components/InterviewerImageHappy';
 import InterviewerImageSad from '../../components/InterviewerImageSad';
 import AnswerTheQuestion from '../../components/AnswerTheQuestion';
-import { Card, CardContent, Typography, Container } from '@mui/material';
+import { Card, CardContent, Typography, Container, Grid } from '@mui/material';
 
 // 質問、回答、正誤を定義
 const questions = [
@@ -56,7 +56,21 @@ const Index = () => {
   const [showAnswers, setShowAnswers] = useState(false); // 回答を表示するための状態管理
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(true); // 回答が正解か不正解かの状態管理
   const [isAllAnswersCorrect, setIsAllAnswersCorrect] = useState(true); // 全ての質問に正解したか否かの状態管理
+  // const [questions, setQuestions] = useState([]);
 
+  // TODO /questions エンドポイントを呼び出して質問を取得する
+  // useEffect(() => {
+  //   fetch('/questions')
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       // 質問データをセットする
+  //       setQuestions(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error('質問を取得できませんでした:', error);
+  //     });
+  // }, []);
+  
   // 質問を一文字ずつ表示
   useEffect(() => {
     if (currentQuestionNum < questions.length) {
@@ -105,34 +119,38 @@ const Index = () => {
   return (
     <div>
       <Container>
-        {isAnswerCorrect ? <InterviewerImageHappy /> : <InterviewerImageSad />}
-        <Card>
-          <CardContent>
-            <Typography variant="h6" gutterBottom>
-              ストーリー
-            </Typography>
-            {currentQuestionNum < questions.length ? (
-              <>
-                <Typography variant="body1">
-                  {displayedQuestion}
+        <Grid item xs={12} sm={6}>
+          {isAnswerCorrect ? <InterviewerImageHappy /> : <InterviewerImageSad />}
+          <Grid item xs={12} sm={6}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" gutterBottom>
+                  ストーリー
                 </Typography>
-                {showAnswers && (
-                  <AnswerTheQuestion
-                    answers={questions[currentQuestionNum].answers}
-                    onAnswerSelected={handleAnswerSelected}
-                  />
+                {currentQuestionNum < questions.length ? (
+                  <>
+                    <Typography variant="body1">
+                      {displayedQuestion}
+                    </Typography>
+                    {showAnswers && (
+                      <AnswerTheQuestion
+                        answers={questions[currentQuestionNum].answers}
+                        onAnswerSelected={handleAnswerSelected}
+                      />
+                    )}
+                  </>
+                ) : (
+                  <Typography variant="h5" color="secondary">
+                    {isAllAnswersCorrect ? 'おめでとうございます！合格です！' : '申し訳ありません、不合格です。'}
+                  </Typography>
                 )}
-              </>
-            ) : (
-              <Typography variant="h5" color="secondary">
-                {isAllAnswersCorrect ? 'おめでとうございます！合格です！' : '申し訳ありません、不合格です。'}
-              </Typography>
-            )}
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
       </Container>
     </div>
-  );  
-};  
+  );
+}
 
 export default Index;
