@@ -10,8 +10,8 @@ function Copyright() {
   return (
     <React.Fragment>
       {'© '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://school.runteq.jp/v2/job_postings">
+        Team watanabe
       </Link>{' '}
       {new Date().getFullYear()}
     </React.Fragment>
@@ -46,7 +46,7 @@ export default function AppFooter() {
   return (
     <Typography
       component="footer"
-      sx={{ display: 'flex', bgcolor: '#FFC0CB' }}
+      sx={{ display: 'flex', bgcolor:'rgba(169, 169, 169, 0.5)' }}
     >
       <Container sx={{ my: 8, display: 'flex' }}>
         <Grid container spacing={5}>
@@ -64,23 +64,23 @@ export default function AppFooter() {
             </Grid>
           </Grid>
           <Grid item xs={6} sm={4} md={2}>
-            <Typography variant="h6" marked="left" gutterBottom>
+            {/* <Typography variant="h6" marked="left" gutterBottom>
               Legal
-            </Typography>
-            <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
+            </Typography> */}
+            {/* <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
               <Box component="li" sx={{ py: 0.5 }}>
                 <Link href="/premium-themes/onepirate/terms/">Terms</Link>
               </Box>
               <Box component="li" sx={{ py: 0.5 }}>
                 <Link href="/premium-themes/onepirate/privacy/">Privacy</Link>
               </Box>
-            </Box>
+            </Box> */}
           </Grid>
           <Grid item xs={6} sm={8} md={4}>
-            <Typography variant="h6" marked="left" gutterBottom>
+            {/* <Typography variant="h6" marked="left" gutterBottom>
               Language
-            </Typography>
-            <TextField
+            </Typography> */}
+            {/* <TextField
               select
               size="medium"
               variant="standard"
@@ -94,10 +94,10 @@ export default function AppFooter() {
                   {language.name}
                 </option>
               ))}
-            </TextField>
+            </TextField> */}
           </Grid>
           <Grid item>
-            <Typography variant="caption">
+            {/* <Typography variant="caption">
               {'Icons made by '}
               <Link href="https://www.freepik.com" rel="sponsored" title="Freepik">
                 Freepik
@@ -115,7 +115,7 @@ export default function AppFooter() {
               >
                 CC 3.0 BY
               </Link>
-            </Typography>
+            </Typography> */}
           </Grid>
         </Grid>
       </Container>

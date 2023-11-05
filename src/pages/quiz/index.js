@@ -6,7 +6,7 @@ import { Card, CardContent, Typography, Container, Grid } from '@mui/material';
 
 // 質問、回答、正誤を定義
 const questions = [
-  { question: '初めまして。本日の面接を担当させて頂きます、株式会社走る技術の代表のひさじゅです。よろしくお願いいたします。それでは早速ですが自己紹介をお願いします。', 
+  { question: '初めまして。本日の面接を担当させて頂きます、株式会社走る技術の代表のひざしゅです。よろしくお願いいたします。それでは早速ですが自己紹介をお願いします。', 
     answers: [
       { text: '次へ', nextQuestionNum: 1, isCorrect: true },
     ] 

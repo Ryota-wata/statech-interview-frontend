@@ -31,7 +31,7 @@ function ProductValues() {
                 1.その企業のファンになれ！
               </Typography>
               <Typography variant="h5">
-                {'面接を受ける企業の情報を徹底的に調べ上げ、掲げている理念や力を入れていることをベタ褒めしよう！'}
+                {'面接を受ける企業の情報を徹底的に調べ上げ、掲げている理念や力を入れていることに共感しよう！'}
               </Typography>
             </Box>
           </Grid>
