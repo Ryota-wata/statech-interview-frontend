@@ -26,7 +26,8 @@ function AppAppBar() {
             面接官&apos;sハートキャッチ
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
-            <Link
+            {/* TODO ログイン機能 */}
+            {/* <Link
               color="inherit"
               variant="h6"
               underline="none"
@@ -34,7 +35,7 @@ function AppAppBar() {
               sx={rightLink}
             >
               ログイン
-            </Link>
+            </Link> */}
           </Box>
         </Toolbar>
       </AppBar>

@@ -16,14 +16,14 @@ const theme = createTheme({
 });
 
 const backgroundImage =
-  '/background-image.jpg';
+  '/background-image.png';
 
 export default function Title() {
   return (
     <TitleLayout
       sxBackground={{
         backgroundImage: `url(${backgroundImage})`,
-        backgroundColor: '#7fc7d9',
+        backgroundColor: 'rgba(127, 199, 217, 1)',
         backgroundPosition: 'center',
       }}
     >
@@ -32,21 +32,21 @@ export default function Title() {
         src={backgroundImage}
         alt="increase priority"
       />
-      <ThemeProvider theme={theme}>
+      {/* <ThemeProvider theme={theme}>
         <Typography color="inherit" align="center" variant="h2" marked="center" style={{ whiteSpace: 'pre-line' }}>
           面接官を喜ばせろ！<br />面接官&apos;sハートキャッチ
         </Typography>
-      </ThemeProvider>
+      </ThemeProvider> */}
       <Typography
         color="inherit"
         align="center"
         variant="h5"
-        sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
+        sx={{ mb: 4, mt: { xs: 40, sm: 50 } }}
       >
         面接官を終始笑顔にし、内定を獲得せよ！
       </Typography>
       <Button
-        color="info"
+        color="warning"
         variant="contained"
         size="large"
         component="a"
@@ -55,7 +55,8 @@ export default function Title() {
       >
         ゲームスタート
       </Button>
-      <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
+      {/* TODO ログイン機能実装後  */}
+      {/* <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
         ログインした場合は過去のプレイ履歴が見れるようになります。
       </Typography><br/>
       <Button
@@ -67,7 +68,7 @@ export default function Title() {
         sx={{ minWidth: 200 }}
       >
         ログイン
-      </Button>
+      </Button> */}
     </TitleLayout>
   );
 }
