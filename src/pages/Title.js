@@ -34,7 +34,7 @@ export default function Title() {
       />
       <ThemeProvider theme={theme}>
         <Typography color="inherit" align="center" variant="h2" marked="center" style={{ whiteSpace: 'pre-line' }}>
-          面接官を喜ばせろ！<br />面接官'sハートキャッチ
+          面接官を喜ばせろ！<br />面接官&apos;sハートキャッチ
         </Typography>
       </ThemeProvider>
       <Typography

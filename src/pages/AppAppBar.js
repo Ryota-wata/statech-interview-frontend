@@ -23,7 +23,7 @@ function AppAppBar() {
             href="/"
             sx={{ fontSize: 24 }}
           >
-            面接官'sハートキャッチ
+            面接官&apos;sハートキャッチ
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
             <Link
