@@ -2,10 +2,9 @@ import React from 'react';
 
 const InterviewerImageSad = () => {
   return (
-    <div>
-      <img src="/interviewer-image-sad.jpg" alt="Interviewer" />
-    </div>
+    <img src="/interviewer-image-sad.jpg" alt="Sad" style={{ maxWidth: '100%' }} />
   );
 };
 
 export default InterviewerImageSad;
+
