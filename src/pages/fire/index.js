@@ -53,8 +53,7 @@ const Page = () => {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
-      },
-      mode: 'cors',
+      }
     })
       .then(response => {
         if (!response.ok) {
@@ -74,13 +73,21 @@ const Page = () => {
   }, [credential]);
 
   useEffect(() => {
-    if (credential) {
-      const token = credential?.user?.uid;
-      token && sessionStorage.setItem('token', token);
-      token && sendTokenToServer(token);
-    } else {
-      sessionStorage.removeItem('token');
-    }
+    const handleTokenUpdate = async () => {
+      if (credential) {
+        try {
+          const idToken = await credential.user.getIdToken();
+          sessionStorage.setItem('token', idToken);
+          sendTokenToServer(idToken);
+        } catch (error) {
+          console.error('IDトークンの取得中にエラーが発生しました:', error);
+        }
+      } else {
+        sessionStorage.removeItem('token');
+      }
+    };
+  
+    handleTokenUpdate();
   }, [credential]);
 
   return (
