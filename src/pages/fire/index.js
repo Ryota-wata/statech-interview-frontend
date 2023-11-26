@@ -44,6 +44,27 @@ const Page = () => {
     }
   };
 
+  const sendTokenToServer = (token) => {
+    // ユーザートークンをHTTPリクエストを使用してサーバーに送信するロジックを実装します（例：fetchを使用）。
+    // プレースホルダーのURLは、実際のサーバーエンドポイントに置き換えてください。
+    const serverEndpoint = 'http://localhost:8000/login';
+    fetch(serverEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('ユーザートークンのサーバーへの送信に失敗しました');
+        }
+      })
+      .catch(error => {
+        console.error('サーバーへのトークンの送信中にエラーが発生しました:', error);
+      });
+  };
+
   useEffect(() => {
     const token = sessionStorage.getItem('token');
     if (!credential && token && state!='logouted') {
@@ -52,12 +73,21 @@ const Page = () => {
   }, [credential]);
 
   useEffect(() => {
-    if (credential) {
-      const token = credential?.user?.uid;
-      token && sessionStorage.setItem('token', token);
-    } else {
-      sessionStorage.removeItem('token');
-    }
+    const handleTokenUpdate = async () => {
+      if (credential) {
+        try {
+          const idToken = await credential.user.getIdToken();
+          sessionStorage.setItem('token', idToken);
+          sendTokenToServer(idToken);
+        } catch (error) {
+          console.error('IDトークンの取得中にエラーが発生しました:', error);
+        }
+      } else {
+        sessionStorage.removeItem('token');
+      }
+    };
+  
+    handleTokenUpdate();
   }, [credential]);
 
   return (
