@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { initializeApp } from '@firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from '@firebase/auth';
 
@@ -33,7 +33,7 @@ const LoginBottom = () => {
       setState('error');
     }
   };
-  
+
   const handleLogout = async () => {
     try {
       setState('idle');
