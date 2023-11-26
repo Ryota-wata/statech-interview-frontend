@@ -1,8 +1,8 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import AppBar from '../components/AppBar';
 import Toolbar from '../components/Toolbar';
+import LoginBottom from '../components/LoginBottom';
 
 const rightLink = {
   fontSize: 16,
@@ -26,16 +26,7 @@ function AppAppBar() {
             面接官&apos;sハートキャッチ
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
-            {/* TODO ログイン機能 */}
-            {/* <Link
-              color="inherit"
-              variant="h6"
-              underline="none"
-              href="/premium-themes/onepirate/sign-in/"
-              sx={rightLink}
-            >
-              ログイン
-            </Link> */}
+            <LoginBottom/>
           </Box>
         </Toolbar>
       </AppBar>
