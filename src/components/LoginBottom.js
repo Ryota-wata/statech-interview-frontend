@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { initializeApp } from '@firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from '@firebase/auth';
+
+import Button from '../components/Button';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_APIKEY,
@@ -15,7 +17,7 @@ const firebaseConfig = {
 const auth = getAuth(initializeApp(firebaseConfig));
 const provider = new GoogleAuthProvider();
 
-const Page = () => {
+const LoginBottom = () => {
   const [state, setState] = useState('idle');
   const [error, setError] = useState('');
   const [credential, setCredential] = useState(null);
@@ -92,13 +94,27 @@ const Page = () => {
 
   return (
     <div>
-      <button onClick={handleLogin}>ログイン</button>
-      <button onClick={handleLogout}>ログアウト</button>
-      <div>User: {credential ? credential.user.displayName : ''}</div>
-      <div>State: {state}</div>
-      <div>Error: {String(error)}</div>
+      {state === 'logined' ? (
+        <Button
+          color="error"
+          variant="contained"
+          size="small"
+          onClick={handleLogout}
+        >
+          ログアウト
+        </Button>
+      ) : (
+        <Button
+          color="error"
+          variant="contained"
+          size="small"
+          onClick={handleLogin}
+        >
+          ログイン
+        </Button>
+      )}
     </div>
   );
 };
 
-export default Page;
+export default LoginBottom;
