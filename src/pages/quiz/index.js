@@ -18,7 +18,7 @@ const Index = () => {
   // 質問を取得する関数
   const fetchQuestion = async (questionNum) => {
     try {
-      const quiz_res = await fetch(`http://localhost:8000/question/${questionNum}`);
+      const quiz_res = await fetch(`${process.env.NEXT_PUBLIC_APP_SERVER_URL}/question/${questionNum}`);
       const quiz = await quiz_res.json();
       setCurrentQuestion(quiz);
     } catch (error) {
