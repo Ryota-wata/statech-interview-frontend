@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import InterviewerImageHappy from '../../components/InterviewerImageHappy';
 import InterviewerImageSad from '../../components/InterviewerImageSad';
 import AnswerTheQuestion from '../../components/AnswerTheQuestion';
 import { Card, CardContent, Typography, Container, Grid } from '@mui/material';
+import Button from '../../components/Button';
 
 const Index = () => {
   const [currentQuestionNum, setCurrentQuestionNum] = useState(1);  // 現在の質問数の状態管理（何問目か）
@@ -108,6 +110,16 @@ const Index = () => {
                 {finishQiuz && (
                   <>
                     {message}
+                    <div style={{ marginBottom: '25px' }}></div>
+                    <Link href="/">
+                      <Button
+                        color="warning"
+                        variant="contained"
+                        size="small"
+                      >
+                        TOPページへ
+                      </Button>
+                    </Link>
                   </>
                 )}
               </CardContent>
