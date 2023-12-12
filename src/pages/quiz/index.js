@@ -4,6 +4,8 @@ import InterviewerImageHappy from '../../components/InterviewerImageHappy';
 import InterviewerImageSad from '../../components/InterviewerImageSad';
 import AnswerTheQuestion from '../../components/AnswerTheQuestion';
 import { Card, CardContent, Typography, Container, Grid } from '@mui/material';
+import { auth } from '../../components/fire';
+import { onAuthStateChanged } from 'firebase/auth';
 import Button from '../../components/Button';
 
 const Index = () => {
@@ -27,6 +29,32 @@ const Index = () => {
       console.error('質問を取得できませんでした:', error);
     }
   };
+
+  const submitAnswer = async (answer, questionNum) => {
+    const firebaseUser = auth.currentUser;
+    const answerData = {
+      user_id: firebaseUser.uid,
+      question_id: questionNum,
+      choice_id: answer.choice_id,
+    };
+    console.log("answer", answer);
+    try {
+      const response = await fetch(`http://localhost:8000/questions/${questionNum}/answers`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(answerData),
+        });
+      if (response.ok) {
+        console.log("回答を送信しました");
+      }
+      const responseData = await response.json();
+      console.log(responseData);
+    } catch (error) {
+      console.error("回答を送信できませんでした", error);
+    }
+  }
 
   // 初回マウント時と質問が変更されたときに質問を取得
   useEffect(() => {
@@ -59,6 +87,8 @@ const Index = () => {
 
   // 回答を選択したときの挙動
   const handleAnswerSelected = (answer) => {
+    // 回答を送信する関数
+    submitAnswer(answer, currentQuestionNum);
     const isCorrect = answer.text === currentQuestion.correct_answer;
 
     // 正解なら正解数を増やす
