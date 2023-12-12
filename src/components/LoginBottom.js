@@ -49,7 +49,7 @@ const LoginBottom = () => {
   const sendTokenToServer = (token) => {
     // ユーザートークンをHTTPリクエストを使用してサーバーに送信するロジックを実装します（例：fetchを使用）。
     // プレースホルダーのURLは、実際のサーバーエンドポイントに置き換えてください。
-    const serverEndpoint = 'http://localhost:8000/login';
+    const serverEndpoint = `${process.env.NEXT_PUBLIC_APP_SERVER_URL}/login`;
     fetch(serverEndpoint, {
       method: 'POST',
       headers: {

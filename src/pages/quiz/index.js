@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import InterviewerImageHappy from '../../components/InterviewerImageHappy';
 import InterviewerImageSad from '../../components/InterviewerImageSad';
 import AnswerTheQuestion from '../../components/AnswerTheQuestion';
 import { Card, CardContent, Typography, Container, Grid } from '@mui/material';
 import { auth } from '../../components/fire';
 import { onAuthStateChanged } from 'firebase/auth';
+import Button from '../../components/Button';
 
 const Index = () => {
   const [currentQuestionNum, setCurrentQuestionNum] = useState(1);  // 現在の質問数の状態管理（何問目か）
@@ -20,7 +22,7 @@ const Index = () => {
   // 質問を取得する関数
   const fetchQuestion = async (questionNum) => {
     try {
-      const quiz_res = await fetch(`http://localhost:8000/question/${questionNum}`);
+      const quiz_res = await fetch(`${process.env.NEXT_PUBLIC_APP_SERVER_URL}/question/${questionNum}`);
       const quiz = await quiz_res.json();
       setCurrentQuestion(quiz);
     } catch (error) {
@@ -138,6 +140,16 @@ const Index = () => {
                 {finishQiuz && (
                   <>
                     {message}
+                    <div style={{ marginBottom: '25px' }}></div>
+                    <Link href="/">
+                      <Button
+                        color="warning"
+                        variant="contained"
+                        size="small"
+                      >
+                        TOPページへ
+                      </Button>
+                    </Link>
                   </>
                 )}
               </CardContent>
