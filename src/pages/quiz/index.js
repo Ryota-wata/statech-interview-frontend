@@ -14,7 +14,6 @@ const Index = () => {
   const [finishQiuz, setFinishQuiz] = useState(false); // 質問文が全て終わったかの状態管理
   const [showAnswers, setShowAnswers] = useState(false); // 回答を表示するための状態管理
   const [correctNum, setCorrectNum] = useState(0); // 正解数
-  const [passQiuz, setPassQuiz] = useState(false); // 合否
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [message, setMessage] = useState("");
   const totalQuestions = 5;
@@ -101,15 +100,37 @@ const Index = () => {
       setCurrentQuestionNum(prevNum => prevNum + 1);
       fetchQuestion(currentQuestionNum + 1);
     } else {
+      let result = false;
       setFinishQuiz(true);
       setDisplayedQuestion("");
       setMessage('不合格です。');
       if (isCorrect) {
         if (correctNum + 1 ===  totalQuestions) {
-          setPassQuiz(true);
+          result = true
           setMessage('おめでとうございます！合格です！');
         }
       }
+      // 最終結果をサーバーに保存
+      // ユーザーのトークン
+      const token = sessionStorage.getItem('token')
+      // 質問のidから会社のid取得しているので書き直した方がいい
+      const requestData = {
+        question_id: currentQuestionNum,
+        result: result
+      };
+
+      fetch(`${process.env.NEXT_PUBLIC_APP_SERVER_URL}/result`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(requestData),
+      })
+      .catch(error => {
+        // エラーハンドリング（必要に応じて追加）
+        console.error('Error:', error);
+      });
     }
   };
 
