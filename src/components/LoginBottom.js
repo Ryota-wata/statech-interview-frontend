@@ -95,6 +95,17 @@ const LoginBottom = () => {
   return (
     <div>
       {state === 'logined' ? (
+        <div>
+          <Button
+          color="warning"
+          variant="contained"
+          size="small"
+          component="a"
+          href="/me"
+          sx={{ marginRight: 2 }}
+        >
+          戦歴
+        </Button>
         <Button
           color="error"
           variant="contained"
@@ -103,6 +114,7 @@ const LoginBottom = () => {
         >
           ログアウト
         </Button>
+      </div>
       ) : (
         <Button
           color="error"
