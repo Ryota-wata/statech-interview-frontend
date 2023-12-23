@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      console.log('onAuthStateChanged', authUser);
       if (authUser) {
         setUser(authUser);
         handleTokenUpdate(authUser);

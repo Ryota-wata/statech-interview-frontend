@@ -16,7 +16,6 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 const sendTokenToServer = (token) => {
-  console.log('Sending token to server:', token);
   // ユーザートークンをHTTPリクエストを使用してサーバーに送信するロジックを実装します（例：fetchを使用）。
   // プレースホルダーのURLは、実際のサーバーエンドポイントに置き換えてください。
   const serverEndpoint = `${process.env.NEXT_PUBLIC_APP_SERVER_URL}/login`;
