@@ -1,17 +1,39 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { initializeApp } from '@firebase/app';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from '@firebase/auth';
 
-// TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAyNyVCm4gKm4GeMIFXo8Pj2OA2JUP3drk",
-  authDomain: "statech-login.firebaseapp.com",
-  projectId: "statech-login",
-  storageBucket: "statech-login.appspot.com",
-  messagingSenderId: "503313243097",
-  appId: "1:503313243097:web:fa6b0ac9b1e4fad99457c8",
-  measurementId: "G-GBXWNNM8TK",
+  apiKey: process.env.NEXT_PUBLIC_APIKEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECTID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGEBUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGINGSENDERID,
+  appId: process.env.NEXT_PUBLIC_APPID,
+  measurementId: process.env.NEXT_PUBLIC_MEASUREMENTID,
 };
 
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
-export const auth = getAuth(app);
+const sendTokenToServer = (token) => {
+  // ユーザートークンをHTTPリクエストを使用してサーバーに送信するロジックを実装します（例：fetchを使用）。
+  // プレースホルダーのURLは、実際のサーバーエンドポイントに置き換えてください。
+  const serverEndpoint = `${process.env.NEXT_PUBLIC_APP_SERVER_URL}/login`;
+  fetch(serverEndpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    }
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('ユーザートークンのサーバーへの送信に失敗しました');
+      }
+    })
+    .catch(error => {
+      console.error('サーバーへのトークンの送信中にエラーが発生しました:', error);
+    });
+};
+
+export { auth, provider, sendTokenToServer };

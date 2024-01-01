@@ -8,7 +8,6 @@ import ProductValues from './ProductValues';
 export default function Home() {
   return (
     <React.Fragment>
-      <AppAppBar />
       <Title />
       <ProductValues />
       <ProductCategories />
